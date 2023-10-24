@@ -1,8 +1,6 @@
 import Model from './model.js';
 
 export default class CollectionFilter {
-
-
     constructor(objects, params, model) {
         this.objects = objects;
         this.params = params;
@@ -14,6 +12,7 @@ export default class CollectionFilter {
                 return this.params[p];
             }
         });
+        return false;
     }
     get() {
         let newList = [...this.objects];
@@ -25,7 +24,7 @@ export default class CollectionFilter {
         this.limit();
     }
     name() {
-        let valeur = this.getValeur("sort");
+        let valeur = this.getValeur("sort");if(valeur == false){return;}
         let currentT = [...this.list];
 
         let newt = [];
@@ -37,7 +36,7 @@ export default class CollectionFilter {
         this.list = newt;
     }
     sort() {
-        let valeur = this.getValeur("sort");
+        let valeur = this.getValeur("sort");if(valeur == false){return;}
         let currentT = [...this.list];
 
         currentT.sort((x, y) => this.innerCompare(x, y));
@@ -45,7 +44,7 @@ export default class CollectionFilter {
         this.list = currentT;
     }
     category() {
-        let valeur = this.getValeur("category");
+        let valeur = this.getValeur("category");if(valeur == false){return;}
         let currentT = [...this.list];
 
         let newt = [];
@@ -58,7 +57,7 @@ export default class CollectionFilter {
     }
 
     limit() {
-        let limitvaleur = this.getValeur("limit");
+        let limitvaleur = this.getValeur("limit");if(valeur == false){return;}
         let offset = this.getValeur("offset");
         let currentT = [...this.list];
 
@@ -72,7 +71,6 @@ export default class CollectionFilter {
         });
         this.list = newt;
     }
-
 
     valueMatch(value, searchValue) {
         try {
